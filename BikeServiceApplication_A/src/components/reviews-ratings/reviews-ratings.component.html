@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 border p-4 shadow bg-light">
+            <div class="col-12">
+                <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Share Your Experience</h3>
+            </div>
+            <form [formGroup]="ReviewsForm" >
+                <div class="row g-3">
+                    <div class="col-12">
+                        <select class="form-select" formControlName="rating">
+                            <option value="" disabled selected hidden>--rate one to  five--</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Enter Review" formControlName="Review" id="Review" >
+                    </div>
+                    <div class="col-12 mt-5">                        
+                        <button type="submit" class="btn btn-primary" [disabled]="ReviewsForm.invalid" (click)="onSubmit()">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

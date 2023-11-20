@@ -1,0 +1,104 @@
+  <!-- category area -->
+<div class="container">
+    <h2 class="text-center">Service Categories</h2>
+    <div class="category-container">
+      <p>Following Categories of Bike Service Available</p>
+      <div class="card-container">
+        <div class="card" *ngFor="let cat of categories">
+          <img src="{{cat.image}}" class="card-img-top" alt="{{cat.title}} Image">
+          <div class="card-body">
+            <h5 class="card-title">{{cat.title}}</h5>
+            <a class="btn btn-primary" (click)="showServices(cat.type)">Show Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- table area -->
+  <!-- <app-category-services-table></app-category-services-table> -->
+  <h2> Category Specific Services </h2>
+  <!-- <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Service Provider</th>
+        <th scope="col">Category</th>
+        <th scope="col">Service</th>
+        <th scope="col">Location</th>
+        <th scope="col">Price</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of Provider">
+        <td>{{p.name}}</td>
+        <td>{{getRequiredService(p.serviceCategories).category}}</td>
+        <td>{{getRequiredService(p.serviceCategories).service}}</td>
+        <td>{{p.location}}</td>
+        <th>{{getRequiredService(p.serviceCategories).price}}</th>
+        <th><button (click)="showServiceProviderDetails(p)" >Show More</button></th>
+      </tr>
+    </tbody>
+  </table> -->
+  <div  class="cd1">
+    <button id="sort-asc-btn" (click)="sortProviders('asc')">Ascending</button>
+    <h3>Filter by Price </h3>
+    <button id="sort-desc-btn " (click)="sortProviders('desc')">Descending</button>
+  </div>
+  <section style="background-color: #eee;">
+    <div class="container py-5 " >
+      <!-- individual card -->
+      <div class="row justify-content-center mb-3 " *ngFor="let p of Provider">
+        <div class="col-md-12 col-xl-10 ">
+          <div class="card shadow-0 border rounded-3" style="width:80vw;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLGJWMgSrZ88PNHdBLel1_hIZT0xb0-sBynQ&usqp=CAU"
+                      class="w-100" />
+                    <a href="#!">
+                      <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                  <h5>Provider Name :{{p.name}}</h5>
+                  <h5>Service Name: {{getRequiredService(p.serviceCategories).service}}</h5>
+                  <div class="d-flex flex-row">
+                    <span>Rating: {{p.rating}}</span>
+                    <div class="text-danger mb-1 me-2" *ngFor="let r of [1].constructor(p.rating)">
+                      <i class="fa fa-star"></i>
+                    </div>
+                  </div>
+                  <div class="mt-1 mb-0 text-muted small">
+                    <!-- <span>100% cotton</span> -->
+                    <span class="text-primary"> • </span>
+                    <span>Location: {{p.location}}</span>
+                  </div>
+                  <!-- <p class="text-truncate mb-4 mb-md-0">
+                    Service Available Between: {{p.availability.fromDate}} to {{p.availability.toDate}}
+                  </p> -->
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                  <div class="d-flex flex-row align-items-center mb-1">
+                    <h4 class="mb-1 me-1"><i class="fa fa-rupee"></i> {{getRequiredService(p.serviceCategories).price}} /-</h4>
+                    <!-- <span class="text-danger"><s>$20.99</s></span> -->
+                  </div>
+                  <div class="d-flex flex-column mt-4">
+                    <button class="btn btn-primary btn-sm" type="button" routerLink="/details/{{p.id}}" >Details</button>
+                    <button class="btn btn-outline-primary btn-sm mt-2" type="button" (click)="openBooking(p.id)">Book</button>
+                    <!-- <button class="btn btn-primary btn-sm mt-2" type="button">Check availability</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  

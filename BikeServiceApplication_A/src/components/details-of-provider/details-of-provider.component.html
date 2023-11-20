@@ -1,0 +1,49 @@
+<div class="container my-5 ">
+    <button class="btn btn-primary" routerLink="">Back</button>
+    <div class="row justify-content-center mx-auto">
+      <div class="col-sm-11 mx-auto">
+            <div class="row">
+                <div class="col-sm-6 " id="map">
+                </div>
+                <div class="col-sm-6 d-flex flex-column justify-content-center" *ngIf="CurrProvider">
+                  <h1>Provider Name : {{CurrProvider.name}} </h1>
+                  <p><b>Location : {{CurrProvider.location}}</b> </p>
+                  <h3><b>Experties : {{CurrProvider.expertise}}</b></h3>
+                  <h3><b>Ratings : {{CurrProvider.rating}}</b></h3>
+                  <h3> <b>List of all Services provided</b> </h3>           
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Category</th>
+                        <th scope="col">Service</th>
+                        <th scope="col">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let p of CurrProvider.serviceCategories">
+                        <td>{{p.category}}</td>
+                        <td>{{p.service}}</td>
+                        <th>{{p.price}}</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h3>Customer Reviews </h3>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Customer Experience</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let review of CurrProvider.review; let i = index">
+                        <th scope="row">{{review}}</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h3><button type="button" class="btn btn-light" (click)="openReviews(CurrProvider.id)">
+                    +Add Review and Ratings </button></h3>
+                </div>
+              </div>
+      </div>
+    </div>
+  </div>
