@@ -7,6 +7,7 @@ import { HomeComponent } from 'src/components/home/home.component';
 import { DetailsOfProviderComponent } from 'src/components/details-of-provider/details-of-provider.component';
 import { LandingPageComponent } from 'src/components/landing-page/landing-page.component';
 import { BookingBikeServiceComponent } from 'src/components/booking-bike-service/booking-bike-service.component';
+import { MyprofileComponent } from 'src/components/myprofile/myprofile.component';
 
 const routes: Routes = [
   {path:'',component:LandingPageComponent},
@@ -15,9 +16,10 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'ervice-provider-details/:id',component:DetailsOfProviderComponent},
   {path:'back',component:HomeComponent},
-  {path:'details/:id', component:DetailsOfProviderComponent}
+  {path:'details/:id', component:DetailsOfProviderComponent},
+  {path:"profile",component:MyprofileComponent}
 ];
-
+// 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

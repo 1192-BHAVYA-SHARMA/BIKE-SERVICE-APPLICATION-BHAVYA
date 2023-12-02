@@ -1,0 +1,70 @@
+<div class="maincontainer">
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-7">
+        <form [formGroup]="profileForm" >
+          <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="text-right">Profile Details</h2>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label>New Name:</label>
+                <mat-form-field appearance="outline">
+                  <mat-label>User Name</mat-label>
+                  <input matInput formControlName="userName" placeholder="Name">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <label>Updated Contact:</label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Mobile Number</mat-label>
+                  <input matInput formControlName="phone" placeholder="Phone Number">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <label>New Address:</label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Address</mat-label>
+                  <input matInput formControlName="address" placeholder="Address">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <label>New Password:</label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput formControlName="password" placeholder="Password">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <label>New Email:</label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Email ID</mat-label>
+                  <input matInput formControlName="email" placeholder="Email ID">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <!-- <label>Updated Mode:</label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Payment Mode</mat-label>
+                  <input matInput formControlName="paymentMode" placeholder="Payment Mode">
+                </mat-form-field> -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Payment Mode</mat-label>
+                  <mat-select formControlName="paymentMode" placeholder="Payment Mode">
+                    <mat-option value="">--Select Payment Mode--</mat-option>
+                    <mat-option *ngFor="let opt of paymentOptions" [value]="opt">{{ opt|titlecase }}</mat-option>
+                  </mat-select>
+               </mat-form-field>
+
+              </div>
+            </div>
+            <div class="mt-5 text-center">
+              <button [disabled]="!profileForm.valid" type="submit" class="btn btn-primary profile-button" (click)="onSubmit()">Save Profile</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

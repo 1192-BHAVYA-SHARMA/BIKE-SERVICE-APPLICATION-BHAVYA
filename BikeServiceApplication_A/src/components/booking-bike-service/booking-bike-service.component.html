@@ -11,8 +11,6 @@
                     </div>
                     <div class="col-12">
                         <select class="form-select" formControlName="slot">
-                            <!-- <option selected>--Slot--</option>
-                            <option value="PERIODIC_MAINTAINANCE">9:00 AM</option><option value="CLEANING">12:00 PM</option><option value="LUBRICATION">03:00 PM</option><option value="DENTING_AND_PAINTING">06:00 PM</option><option value=""></option> -->
                             <option value="" disabled selected hidden>--Select Slot--</option>
                             <option value="9:00 AM">9:00 AM</option>
                             <option value="12:00 PM">12:00 PM</option>
@@ -22,6 +20,10 @@
                     </div>
                     <div class="col-12 mt-5">                        
                         <button type="submit" class="btn btn-primary" [disabled]="serviceproviderBookingForm.invalid" (click)="onSubmit()">Submit</button>
+                    </div>
+
+                    <div class="col-12 mt-5">
+                        <button class="btn btn-primary"  (click)="payNow()" >Pay Now</button>
                     </div>
                 </div>
             </form>

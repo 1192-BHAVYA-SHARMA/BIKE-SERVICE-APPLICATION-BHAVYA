@@ -1,0 +1,23 @@
+<h2>Welcome Admin !!!</h2>
+<h4>Here are all the User Details.....</h4>
+
+<table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Use_id</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let  u of users">
+        <th scope="row">{{u.userId}}</th>
+        <td>{{u.userName}}</td>
+        <td>{{u.phone}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.address}}</td>
+      </tr>
+    </tbody>
+  </table>

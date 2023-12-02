@@ -13,6 +13,8 @@ import { MaterialModule } from 'src/material/material.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HistoryComponent } from './history/history.component';
 import { ReviewsRatingsComponent } from './reviews-ratings/reviews-ratings.component';
+import { AllUsersComponent } from './all-users/all-users.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,14 @@ import { ReviewsRatingsComponent } from './reviews-ratings/reviews-ratings.compo
     DetailsOfProviderComponent,
     BookingBikeServiceComponent,
     HistoryComponent,
-    ReviewsRatingsComponent
+    ReviewsRatingsComponent,
+    AllUsersComponent,
+    MyprofileComponent
   ],
   imports: [
     CommonModule,ReactiveFormsModule,HttpClientModule,MaterialModule, AppRoutingModule
   ],
-  exports:[LoginComponent,RegisterComponent,HomeComponent,NavbarComponent,LandingPageComponent,DetailsOfProviderComponent]
+  exports:[LoginComponent,RegisterComponent,HomeComponent,
+    NavbarComponent,LandingPageComponent,DetailsOfProviderComponent,AllUsersComponent,MyprofileComponent]
 })
 export class ComponentsModule { }

@@ -12,6 +12,7 @@ export class ReviewsRatingsComponent implements OnInit{
 
   public ReviewsForm!: FormGroup;
   public currentRating: number = 0;
+  public Currp!:ServiceProvider;//store cur provider
 
   constructor(private fg:FormBuilder,private serv:BikeServiceService){}
 
@@ -33,19 +34,51 @@ export class ReviewsRatingsComponent implements OnInit{
       //user rating from form 
       let user_review: string = this.ReviewsForm.get('Review')?.value;
       //get provider details by id and update it
-      this.serv.getProviderById(provider_id).subscribe(CurrProvider => {
-        CurrProvider.review = CurrProvider.review || [];
-        CurrProvider.review.push(user_review);
-        //update current rating by taking average
-        CurrProvider.rating = Math.round((CurrProvider.rating+ user_rating)/2);
-    this.serv.updateProviderdetails(provider_id, CurrProvider.name, CurrProvider.location, 
-      CurrProvider.rating, CurrProvider.expertise, CurrProvider.serviceCategories, 
-      CurrProvider.latitude, CurrProvider.longitude, CurrProvider.review);
-  });
-  //location.reload(); // reload the current page
-    } else {
+      this.serv.getProviderById(provider_id).subscribe({
+        next: (CurrProvider) => {
+          this.Currp = CurrProvider;
+          this.Currp.review = CurrProvider.review || [];
+          this.Currp.review.push(user_review);//add new review
+          console.log(this.Currp.review);
+          this.Currp.rating = (CurrProvider.rating+ user_rating)/2;
+        },
+        error: (err) => {console.log(err)},
+        complete: () => {//once completed  then update the values
+          this.serv.updateProviderdetails(provider_id,this.Currp.name, this.Currp.location, 
+            this.Currp.rating, this.Currp.expertise, this.Currp.serviceCategories, 
+            this.Currp.latitude, this.Currp.longitude, this.Currp.review).subscribe({
+              next: (data) => {console.log(data)
+              
+              },
+              error: (err) => {console.log(err)},
+              complete: () => {},
+            });
+        },
+      })
+      // location.reload(); // reload the entire website --
+    } 
+    else 
+    {
       console.log("invalid");
     }
+  }
+
+  getProviderDetails(id: string): void {
+    this.serv.getProviderById(this.serv.getProvider_id()).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        this.Currp = resp;
+          this.Currp.review = resp.review || [];
+          // this.Currp.review.push(user_review);//add new review
+          console.log(this.Currp.review);
+          // this.Currp.rating = (resp.rating+ user_rating)/2;
+
+      },
+      complete: () => {},
+      error: (err) => {
+        console.error(err);
+      }
+    }) //get provider id )
   }
 
 }

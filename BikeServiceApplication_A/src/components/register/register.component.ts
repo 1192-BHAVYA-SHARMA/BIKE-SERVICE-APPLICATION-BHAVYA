@@ -44,7 +44,14 @@ export class RegisterComponent implements OnInit {
         console.log(response.role);
         
         window.alert("User Registered Succesfully.")
-        console.log(response);
+        console.log(response.role);
+        if(response.role==="ADMIN"){
+          localStorage.setItem('ADMIN', "true"); //key value----role 
+        }
+        else{
+          localStorage.setItem('ADMIN', "false");
+        }
+        
         this.router.navigate(['login']);
       },
       error: (err) => {

@@ -14,7 +14,7 @@
      border-radius: 20px;
 
   }
-  .navbar-nav { display: flex; flex-direction: row; }
+  .navbar-nav { display: flex; flex-direction: row;  }
   .navbar-nav li { 
     margin-right: 20px; 
     font-size: 20px;

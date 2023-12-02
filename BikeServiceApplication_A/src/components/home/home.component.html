@@ -1,3 +1,4 @@
+    
   <!-- category area -->
 <div class="container">
     <h2 class="text-center">Service Categories</h2>
@@ -5,7 +6,7 @@
       <p>Following Categories of Bike Service Available</p>
       <div class="card-container">
         <div class="card" *ngFor="let cat of categories">
-          <img src="{{cat.image}}" class="card-img-top" alt="{{cat.title}} Image">
+          <img [src]="cat.image" class="card-img-top" alt="{{cat.title}} Image">
           <div class="card-body">
             <h5 class="card-title">{{cat.title}}</h5>
             <a class="btn btn-primary" (click)="showServices(cat.type)">Show Services</a>
@@ -16,30 +17,7 @@
   </div>
 
   <!-- table area -->
-  <!-- <app-category-services-table></app-category-services-table> -->
   <h2> Category Specific Services </h2>
-  <!-- <table class="table table-hover table-dark">
-    <thead>
-      <tr>
-        <th scope="col">Service Provider</th>
-        <th scope="col">Category</th>
-        <th scope="col">Service</th>
-        <th scope="col">Location</th>
-        <th scope="col">Price</th>
-        <th scope="col">Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let p of Provider">
-        <td>{{p.name}}</td>
-        <td>{{getRequiredService(p.serviceCategories).category}}</td>
-        <td>{{getRequiredService(p.serviceCategories).service}}</td>
-        <td>{{p.location}}</td>
-        <th>{{getRequiredService(p.serviceCategories).price}}</th>
-        <th><button (click)="showServiceProviderDetails(p)" >Show More</button></th>
-      </tr>
-    </tbody>
-  </table> -->
   <div  class="cd1">
     <button id="sort-asc-btn" (click)="sortProviders('asc')">Ascending</button>
     <h3>Filter by Price </h3>
@@ -74,23 +52,17 @@
                     </div>
                   </div>
                   <div class="mt-1 mb-0 text-muted small">
-                    <!-- <span>100% cotton</span> -->
                     <span class="text-primary"> • </span>
                     <span>Location: {{p.location}}</span>
                   </div>
-                  <!-- <p class="text-truncate mb-4 mb-md-0">
-                    Service Available Between: {{p.availability.fromDate}} to {{p.availability.toDate}}
-                  </p> -->
                 </div>
                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                   <div class="d-flex flex-row align-items-center mb-1">
                     <h4 class="mb-1 me-1"><i class="fa fa-rupee"></i> {{getRequiredService(p.serviceCategories).price}} /-</h4>
-                    <!-- <span class="text-danger"><s>$20.99</s></span> -->
                   </div>
                   <div class="d-flex flex-column mt-4">
                     <button class="btn btn-primary btn-sm" type="button" routerLink="/details/{{p.id}}" >Details</button>
                     <button class="btn btn-outline-primary btn-sm mt-2" type="button" (click)="openBooking(p.id)">Book</button>
-                    <!-- <button class="btn btn-primary btn-sm mt-2" type="button">Check availability</button> -->
                   </div>
                 </div>
               </div>
@@ -101,4 +73,7 @@
 
     </div>
   </section>
+
+  <!-- show all user  table  just for admin -->
+<app-all-users *ngIf="isAdmin"></app-all-users>
   

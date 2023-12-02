@@ -15,17 +15,18 @@ export class BikeServiceService {
   private apiurl_provider="http://localhost:8080/service_providers";//for provider controller in spring 
   constructor( private http:HttpClient) { }
 
+  //Api call for login
   loginUser(email: string, password: string): Observable<User> {
     const credentials = { email, password };
     return this.http.post<User>(`${this.apiurl}/login`, credentials);
   }
   registerUser(formData:User): Observable<User>{
-    // return this.http.post(this.apiurl +'/register', formData);
+    // api call to register
     return this.http.post<User>(this.apiurl+"/register", formData);
   }
   
   getServiceProviderByCategory(category:string):Observable<ServiceProvider[]> {
-    // return this.http.get(this.apiurl_provider+"/category/"+category) as Observable<ServiceProvider[]>;
+    // to get category specific service providers
     return this.http.get("http://localhost:8080/service_providers/category/"+category) as Observable<ServiceProvider[]>;
     
   }
@@ -64,23 +65,19 @@ getProvider_id(){
       id:providerid,
       date: date,
       slot: slot,
-      // message: message
     };
 
-    // Make the POST request to the server 
-    //return this.http.post(`${this.apiurl}/book-service`, body);
-    //http://localhost:8080/bookings/
+    // Make the POST request to the server for booking 
     return this.http.post<Booking>("http://localhost:8080/bookings",body);
-    /* console.log("http://localhost:8080/bookings/"+providerid); */
   }
 
   getProviderById(id:String):Observable<ServiceProvider>{
     return this.http.get<ServiceProvider>(this.apiurl_provider+"/"+id) ;
   }
-
-  // getUserById(id:String):Observable<User>{
-  //   return this.http.get<User>("http://localhost:8080/"+id);
-  // }
+// get user by its id
+   getUserById(id:String):Observable<User>{
+    return this.http.get<User>("http://localhost:8080/"+id);
+  }
   //send updated provider details
   updateProviderdetails(id:string, name:string,location:  string, rating:number,expertise: string,
     serviceCategories: ServiceCategory[],latitude: number,longitude: number,review:string[])
@@ -94,5 +91,16 @@ getProvider_id(){
       //console.log(id);
       return this.http.put<ServiceProvider>("http://localhost:8080/service_providers/"+id,body);
     } 
+
+    //get all users for admin
+    getAllUsers(): Observable<User[]> {
+      return this.http.get<User[]>("http://localhost:8080/user/allusers");
+    }
+    //update user details
+    updateUser(userId: string, updatedUserDetails: User): Observable<User> {
+      console.log(userId);
+      const url = `${'http://localhost:8080/user'}/${userId}`;
+      return this.http.put<User>(url, updatedUserDetails);
+    }
 
 }

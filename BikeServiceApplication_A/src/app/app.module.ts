@@ -9,9 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/material/material.module';
 
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+   
   ],
   imports: [
     BrowserModule,
